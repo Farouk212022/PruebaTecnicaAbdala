@@ -5,8 +5,10 @@ services:
     build: .
     ports:
       - "2100:2100"
-    links:
+    depends_on:
       - mysql
+    networks:
+      - mynetwork
 
   mysql:
     image: mysql
@@ -17,3 +19,8 @@ services:
       MYSQL_DATABASE: PruebaTecnica
       MYSQL_USER: Farouk21
       MYSQL_PASSWORD: Farouk21
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
