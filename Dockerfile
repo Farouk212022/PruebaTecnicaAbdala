@@ -1,6 +1,6 @@
 FROM openjdk:17-oracle
 
-COPY build/libs/carlosabdala-*.jar /app/carlosabdala.jar
+COPY target/carlosabdala-0.0.1-SNAPSHOT.jar carlosabdala-0.0.1-SNAPSHOT.jar
 
 CMD ["java", "-jar", "/app/carlosabdala.jar"]
 
