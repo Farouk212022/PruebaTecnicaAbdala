@@ -7,6 +7,7 @@ services:
       - "2100:2100"
     depends_on:
       - mysql
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "java", "-jar", "/app/carlosabdala.jar"]
   mysql:
     image: mysql:latest
     ports:

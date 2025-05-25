@@ -1,9 +1,8 @@
 FROM openjdk:17-oracle
 
-COPY target/carlosabdala-0.0.1-SNAPSHOT.jar carlosabdala.jar
+COPY build/libs/carlosabdala-*.jar /app/carlosabdala.jar
+COPY wait-for-it.sh /wait-for-it.sh
 
-CMD ["java", "-jar", "carlosabdala.jar"]
+RUN chmod +x /wait-for-it.sh
 
-EXPOSE 2100/tcp
-
-
+EXPOSE 2100
