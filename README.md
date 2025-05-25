@@ -24,7 +24,7 @@ docker -version
 
 En caso de no tenerlo instalado, puede seguir el siguiente link: https://docs.docker.com/desktop/
 
-Para continuar, dirijase a la carpeta en al que descargo el repositorio. Una vez se encuentre en la carpeta, oprima click derecho sobre esta y busque la opción "Abrir en Terminal":
+Para continuar, diríjase a la carpeta en al que descargo el repositorio. Una vez se encuentre en la carpeta, oprima click derecho sobre esta y busque la opción "Abrir en Terminal":
 
 ![Abrir Terminal](images/abrirEnTerminal.png)
 
@@ -42,18 +42,18 @@ Si se fija al final de los mensajes, ya puede acceder a los endpoints.
 
 ## Endpoints
 
-El sistema back end desarrollado tiene dos enpoints que son los siguientes: 
+El sistema back end desarrollado tiene dos endpoints que son los siguientes:
 
 - http://localhost:2100/api/catImages/registerImage: Endpoint que recupera imágenes de los gatos, las almacena en formato binario en la base de datos e incluye fecha de último llamado a cada imagen registrada y de creación de cada registro.
-  
+
 ![EndPoint de Registro](images/endPoint1.png)
 - http://localhost:2100/api/catImages/countImages: En este endpoint se recuperarán la cantidad de registros que tiene la base de datos.
 
 ![CEndPoint de Conteo](images/endPoint2.png)
-Es necesario aclarar que por facilidad de acceso, ambos endpoints estan diseñados para recibir peticiones de tipo "GET" para poder ser accedidos desde el anvegador web de preferencia sin necesidad de un desarrollo de front.
+Es necesario aclarar que por facilidad de acceso, ambos endpoints están diseñados para recibir peticiones de tipo "GET" para poder ser accedidos desde el navegador web de preferencia sin necesidad de un desarrollo de front.
 
 ## Imagen de Docker Hub
 
 Aunque se hizo la implementación pertinente de Continuous Deployement (CD) para el despliegue automático de la imagen cada vez que se haga un push a la rama main del repositorio,
-en el siguiente link se pueder encontrar la imagen "pruebatecnica" que corresponde al sistema desarrollado:
+en el siguiente link se puede encontrar la imagen "pruebatecnica" que corresponde al sistema desarrollado:
 https://hub.docker.com/r/farouk21/pruebatecnica
