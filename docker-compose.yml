@@ -1,14 +1,9 @@
 version: "3.9"
 
 services:
-  pruebatecnica:
-    build: .
-    ports:
-      - "2100:2100"
-    links:
-      - mysql
   mysql:
-    image: mysql
+    image: mysql:8
+    container_name: mysql
     ports:
       - "3306:3306"
     environment:
@@ -16,3 +11,18 @@ services:
       MYSQL_DATABASE: PruebaTecnica
       MYSQL_USER: Farouk21
       MYSQL_PASSWORD: Farouk21
+    networks:
+      - mynetwork
+
+  pruebatecnica:
+    build: .
+    container_name: pruebatecnica
+    ports:
+      - "2100:2100"
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

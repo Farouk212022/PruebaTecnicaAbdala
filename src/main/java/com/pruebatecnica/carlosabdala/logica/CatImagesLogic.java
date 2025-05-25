@@ -68,7 +68,7 @@ public class CatImagesLogic {
             System.out.println(inputStream);
             return ImageIO.read(inputStream);
         } else {
-            throw new IOException("Error al recuperar de la API. Estado de respuesta= " + responseCode);
+            throw new IOException("Error al recuperar de la API. Estado de respuesta: " + responseCode);
         }
     }
 
