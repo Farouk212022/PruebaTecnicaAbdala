@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  pruebatecnica:
+    build: .
+    ports:
+      - "2100:2100"
+    links:
+      - mysql
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Farouk21
+      MYSQL_DATABASE: PruebaTecnica
+      MYSQL_USER: Farouk21
+      MYSQL_PASSWORD: Farouk21
