@@ -7,18 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:8
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: Farouk21
-          MYSQL_DATABASE: PruebaTecnica
-          MYSQL_USER: Farouk21
-          MYSQL_PASSWORD: Farouk21
-          
     steps:
       - name: Versionamiento
         uses: actions/checkout@v4
