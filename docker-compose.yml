@@ -5,10 +5,10 @@ services:
     build: .
     ports:
       - "2100:2100"
-    links:
+    depends_on:
       - mysql
   mysql:
-    image: mysql
+    image: mysql:8
     ports:
       - "3306:3306"
     environment:
