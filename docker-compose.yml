@@ -1,24 +1,32 @@
 version: "3.9"
 
 services:
-  pruebatecnica:
-    build: .
-    ports:
-      - "2100:2100"
-    depends_on:
-      - mysql
-    networks:
-      - mynetwork
-
   mysql:
-    image: mysql
+    image: mysql:8
+    container_name: mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: Farouk21
       MYSQL_DATABASE: PruebaTecnica
       MYSQL_USER: Farouk21
       MYSQL_PASSWORD: Farouk21
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pFarouk21"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pruebatecnica:
+    build: .
+    container_name: pruebatecnica
+    ports:
+      - "2101:2100"
+    depends_on:
+      mysql:
+        condition: service_healthy
     networks:
       - mynetwork
 
