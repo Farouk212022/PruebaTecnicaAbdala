@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mysql:
     image: mysql:8
@@ -13,6 +11,12 @@ services:
       MYSQL_PASSWORD: Farouk21
     networks:
       - mynetwork
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "user", "-ppass" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 
   pruebatecnica:
     build: .
@@ -20,7 +24,8 @@ services:
     ports:
       - "2100:2100"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - mynetwork
 

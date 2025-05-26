@@ -6,6 +6,8 @@ mvn clean package -DskipTests
 
 docker-compose up --build -d
 
+docker ps
+
 echo "EndPoint de registro de Imágenes: http://localhost:2100/api/catImages/registerImage"
 echo "EndPoint de conteo de Imágenes: http://localhost:2100/api/catImages/countImages"
 
