@@ -106,7 +106,7 @@ class CatImagesLogicTest {
 
         Mockito.when(catImageRepository.count()).thenReturn(numberTest);
 
-        ResponseEntity<?> expectedResponse = ResponseEntity.status(HttpStatus.OK).body("Imágenes guardadas: " + numberTest+1);
+        ResponseEntity<?> expectedResponse = ResponseEntity.status(HttpStatus.OK).body("Imágenes guardadas: " + numberTest);
         ResponseEntity<?> receivedResponse = catImagesLogic.uniqueRegistersCount();
 
         Mockito.verify(catImageRepository).count();
