@@ -3,6 +3,7 @@ package com.pruebatecnica.carlosabdala.logica;
 import com.pruebatecnica.carlosabdala.bd.CatImage.CatImage;
 import com.pruebatecnica.carlosabdala.bd.CatImage.CatImageRepository;
 
+import com.pruebatecnica.carlosabdala.utils.apiConnection.CatApiConnnection;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Slf4j
@@ -29,14 +28,16 @@ public class CatImagesLogic {
     private static final Logger logger = LoggerFactory.getLogger(CatImagesLogic.class);
 
     private final CatImageRepository catImageRepository;
+    private final CatApiConnnection catApiConnnection;
 
-    public CatImagesLogic(CatImageRepository catImageRepository){
+    public CatImagesLogic(CatImageRepository catImageRepository, CatApiConnnection catApiConnnection){
         this.catImageRepository=catImageRepository;
+        this.catApiConnnection = catApiConnnection;
     }
 
     public ResponseEntity<?> registerImage() {
         try {
-            BufferedImage apiResponse = recoverImageFromApi();
+            BufferedImage apiResponse = catApiConnnection.recoverImageFromApi();
             byte[] imageBytes = convertToBytes(apiResponse);
             validateRepeatedRegister(imageBytes);
             return setResponse(imageBytes);
@@ -54,21 +55,6 @@ public class CatImagesLogic {
         } catch (Exception e){
             logger.error("Ha ocurrido un error al traer la imagen desde la API",e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ha ocurrido un error al traer la imagen desde la API");
-        }
-    }
-
-    private BufferedImage recoverImageFromApi() throws IOException {
-        URL url = new URL("https://cataas.com/cat");
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-
-        int responseCode = connection.getResponseCode();
-        if (200 == responseCode) {
-            InputStream inputStream = connection.getInputStream();
-            System.out.println(inputStream);
-            return ImageIO.read(inputStream);
-        } else {
-            throw new IOException("Error al recuperar de la API. Estado de respuesta: " + responseCode);
         }
     }
 
@@ -96,8 +82,8 @@ public class CatImagesLogic {
     private void saveDataBaseRegister(byte[] imageBytes){
         CatImage catImage = new CatImage();
         catImage.setBinaryImage(imageBytes);
-        catImage.setCreationDateTime(LocalDateTime.now());
-        catImage.setLastCallDateTime(LocalDateTime.now());
+        catImage.setCreationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        catImage.setLastCallDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         catImageRepository.save(catImage);
     }
 

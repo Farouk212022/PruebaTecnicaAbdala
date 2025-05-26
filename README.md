@@ -24,14 +24,15 @@ docker -version
 
 En caso de no tenerlo instalado, puede seguir el siguiente link: https://docs.docker.com/desktop/
 
+Recuerde verificar que el servicio de Docker Engine se esté ejcutando antes de seguir.
+
 Para continuar, diríjase a la carpeta en al que descargo el repositorio. Una vez se encuentre en la carpeta, oprima click derecho sobre esta y busque la opción "Abrir en Terminal":
 
 ![Abrir Terminal](images/abrirEnTerminal.png)
 
-una vez en el terminal, ejecute cualquiera de los siguientes comandos:
+una vez en el terminal, ejecute el siguiente comando:
 ```cpp
 ./run.sh
-bash run.sh
 ```
 Es posible que se le solicite abrir alguna aplicación, en ese caso seleccione la que prefiera que tenga funciones para ejecución de comandos.
 Debería ver lo siguiente o de manera muy similar:
