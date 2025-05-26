@@ -4,7 +4,7 @@ Carlos Farouk Abdalá Rincón
 
 ## Instrucciones de uso
 
-Tras descargar el repositorio del proyecto, inicialmente es necesario verificar la instalación de Maven para poder ejecutar comandos de gestión del proyecto. Para verificar, ingrese e el terminal el siguiente comando:
+Tras descargar el repositorio del proyecto, inicialmente es necesario verificar la instalación de Maven para poder ejecutar comandos de gestión del proyecto. Para verificar, ingrese en el terminal el siguiente comando:
 
 ```cpp
 mvn -version
@@ -13,7 +13,7 @@ Debería ver el versionamiento de la siguiente manera
 
 ![Instalación Maven](images/mvn.png)
 
-En caso de que no vea la versión por favor dirigirse a este link e instalar Maven:
+En caso de que no vea la versión por favor dirigirse a este link e instale Maven:
 https://maven.apache.org/download.cgi
 
 De igual manera verifique la instalación de Docker:
@@ -58,3 +58,7 @@ Es necesario aclarar que por facilidad de acceso, ambos endpoints están diseña
 Aunque se hizo la implementación pertinente de Continuous Deployement (CD) para el despliegue automático de la imagen cada vez que se haga un push a la rama main del repositorio,
 en el siguiente link se puede encontrar la imagen "pruebatecnica" que corresponde al sistema desarrollado:
 https://hub.docker.com/r/farouk21/pruebatecnica
+
+## Recomendaciones Adicionales 
+
+En caso de presentar algún problema para la ejecución del run.sh o del Docker Compose. Para poder hacer uso del servicio únicamente debe ejecutar una base de datos de MySQL con la variables de entorno que puede encontrar en el application.properties en el repositorio y con una red llamada "mynetwork" una vez montado el contenedor de base de datos,debería poder descargar desde DockerHub la imagen del servicio y ejecutar el contenedor de manera apropiada.
